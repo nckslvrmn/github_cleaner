@@ -16,10 +16,10 @@ on:
   schedule:
     - cron: "0 * * * *"
 jobs:
-  build:
+  clean:
     runs-on: ubuntu-latest
     steps:
-    - name: Bump version and push tag
+    - name: clean old deployments and runs
       uses: nckslvrmn/github_cleaner@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -29,7 +29,7 @@ The default Github token created for the action to use has enough permissions on
 
 # Local Testing
 
-To test the semver component locally, install the python dependencies by running `pip install -r requirements.txt` where auto-tagger is checked out.
+To test the semver component locally, install the python dependencies by running `pip install -r requirements.txt` where github_cleaner is checked out.
 
 Then run the below command:
 ```

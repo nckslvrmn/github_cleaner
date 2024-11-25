@@ -2,7 +2,7 @@
 
 import os
 
-from github import Github, Auth
+from github import Github
 
 
 def delete_old_action_runs(repo):
@@ -46,7 +46,7 @@ def main():
     Returns:
         None
     """
-    github = Github(auth=Auth.Token(os.getenv("GITHUB_TOKEN")))
+    github = Github(os.getenv("GITHUB_TOKEN"))
     repo = github.get_user().get_repo(os.getenv("GITHUB_REPOSITORY"))
     delete_old_action_runs(repo)
     delete_inactive_deployments(github, repo)
