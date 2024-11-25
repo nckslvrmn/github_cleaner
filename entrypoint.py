@@ -47,7 +47,7 @@ def main():
         None
     """
     github = Github(os.getenv("GITHUB_TOKEN"))
-    repo = github.get_user().get_repo(os.getenv("GITHUB_REPOSITORY"))
+    repo = github.get_repo(os.getenv("GITHUB_REPOSITORY"))
     delete_old_action_runs(repo)
     delete_inactive_deployments(github, repo)
 
