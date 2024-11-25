@@ -1,0 +1,9 @@
+name: 'Github Cleaner'
+description: 'cleans old action runs and old deployments from a given repo'
+author: 'Nick Silverman'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'git-merge'
+  color: 'purple'
