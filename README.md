@@ -18,6 +18,9 @@ on:
 jobs:
   clean:
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      deployments: write
     steps:
     - name: clean old deployments and runs
       uses: nckslvrmn/github_cleaner@master
