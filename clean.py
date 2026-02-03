@@ -2,7 +2,7 @@
 
 import os
 import sys
-from github import Github, GithubException
+from github import Github, GithubException, Auth
 
 from utils.config import CleanerConfig
 from cleaners.workflow_runs import WorkflowRunsCleaner
@@ -33,7 +33,7 @@ def main():
     config.print_config()
 
     try:
-        github = Github(token)
+        github = Github(auth=Auth.Token(token))
         repo = github.get_repo(repository)
 
         if config.workflow_runs:

@@ -1,11 +1,13 @@
-github_cleaner
-===
+# github_cleaner
 
-# Introduction
+## Introduction
 
-A fast, lightweight GitHub Action (composite) that cleans up old resources from your repositories, including workflow runs, deployments, artifacts, caches, Pages deployments, packages, and release assets. Highly configurable with sensible defaults.
+A fast, lightweight GitHub Action (composite) that cleans up old resources from
+your repositories, including workflow runs, deployments, artifacts, caches,
+Pages deployments, packages, and release assets. Highly configurable with
+sensible defaults.
 
-# Features
+## Features
 
 - **Workflow Runs**: Delete all but the most recent workflow run
 - **Deployments**: Delete inactive deployments
@@ -15,7 +17,7 @@ A fast, lightweight GitHub Action (composite) that cleans up old resources from 
 - **Packages**: Delete old package versions from GitHub Container Registry
 - **Release Assets**: Delete assets from old releases
 
-# Quick Start
+## Quick Start
 
 Add this workflow to `.github/workflows/cleanup.yml`:
 
@@ -37,14 +39,14 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-# Configuration
+## Configuration
 
 All cleanup types are controlled via environment variables.
 
-## Cleanup Toggles (true/false)
+### Cleanup Toggles (true/false)
 
 | Variable | Default | Description |
-|----------|---------|-------------|
+| -------- | ------- | ----------- |
 | `CLEAN_WORKFLOW_RUNS` | `true` | Delete all but the most recent workflow run |
 | `CLEAN_DEPLOYMENTS` | `true` | Delete inactive deployments |
 | `CLEAN_ARTIFACTS` | `false` | Delete old Actions artifacts |
@@ -53,17 +55,17 @@ All cleanup types are controlled via environment variables.
 | `CLEAN_PACKAGES` | `false` | Delete old package versions |
 | `CLEAN_RELEASE_ASSETS` | `false` | Delete assets from old releases |
 
-## Retention Settings (integers)
+### Retention Settings (integers)
 
 | Variable | Default | Description |
-|----------|---------|-------------|
+| -------- | ------- | ----------- |
 | `KEEP_LATEST_ARTIFACTS` | `1` | Number of artifacts to keep per workflow |
 | `KEEP_LATEST_PACKAGES` | `3` | Number of package versions to keep |
 | `KEEP_LATEST_RELEASES` | `5` | Number of releases to keep assets for |
 
-## Example Configurations
+### Example Configurations
 
-### Default (Backward Compatible)
+#### Default (Backward Compatible)
 
 Only cleans workflow runs and inactive deployments:
 
@@ -73,7 +75,7 @@ Only cleans workflow runs and inactive deployments:
     token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### Comprehensive Cleanup
+#### Cleanup More Content
 
 Clean everything with custom retention:
 
@@ -88,7 +90,7 @@ Clean everything with custom retention:
     KEEP_LATEST_ARTIFACTS: 2
 ```
 
-### Artifacts and Caches Only
+#### Artifacts and Caches Only
 
 Disable default cleaners, enable only artifacts and caches:
 
@@ -103,12 +105,12 @@ Disable default cleaners, enable only artifacts and caches:
     CLEAN_CACHES: true
 ```
 
-# Permissions
+## Permissions
 
 Different cleanup types require different permissions:
 
 | Cleanup Type | Required Permission |
-|--------------|-------------------|
+| ------------ | ------------------- |
 | Workflow runs | `actions: write` |
 | Deployments | `deployments: write` |
 | Artifacts | `actions: write` |
@@ -128,7 +130,7 @@ permissions:
   contents: write
 ```
 
-# Local Testing
+## Local Testing
 
 To test locally, first install dependencies:
 
