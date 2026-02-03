@@ -1,9 +1,24 @@
 name: 'Github Cleaner'
-description: 'cleans old action runs and old deployments from a given repo'
+description: 'Cleans old workflow runs, deployments, artifacts, caches, and other GitHub resources'
 author: 'Nick Silverman'
+inputs:
+  token:
+    description: 'GitHub token for authentication'
+    required: true
+    default: ${{ github.token }}
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+  - name: Install dependencies
+    shell: bash
+    run: pip install -q -r ${{ github.action_path }}/requirements.txt
+
+  - name: Run cleaner
+    shell: bash
+    env:
+      GITHUB_TOKEN: ${{ inputs.token }}
+      PYTHONPATH: ${{ github.action_path }}
+    run: python3 ${{ github.action_path }}/clean.py
 branding:
   icon: 'archive'
   color: 'green'
