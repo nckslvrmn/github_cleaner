@@ -23,7 +23,8 @@ class ArtifactsCleaner(BaseCleaner):
         # Group artifacts by workflow run
         workflow_artifacts = {}
         for artifact in artifacts:
-            wf_id = artifact.get("workflow_run", {}).get("id")
+            workflow_run = artifact.get("workflow_run") or {}
+            wf_id = workflow_run.get("id")
             workflow_artifacts.setdefault(wf_id, []).append(artifact)
 
         for wf_id, arts in workflow_artifacts.items():
